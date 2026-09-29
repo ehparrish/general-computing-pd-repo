@@ -17,6 +17,6 @@ earned = float(earnedStr)
 percent = (earned/total)*100
 rounded = round(percent,2)
 
-print("Your grade: "+str(rounded)+"%")
+print(f"Your grade: {rounded}%")
 
 #Here is a change
