@@ -9,17 +9,32 @@ Prints the result to the console in the following format: "Your grade: 87.50%"""
 
 print("Welcome to the grade calculator")
 totalStr = input("Please enter the total number of points possible: ")
-while not(totalStr.isnumeric()):
-    print("That is not a number. Try again.")
-    totalStr = input("Please enter the total number of points possible: ")
-total = float(totalStr)
+total = 0
+while total == 0:
+    try:
+        total = float(totalStr)
+    except ValueError:
+        totalStr = input("Please enter a number: ")
+    if total <= 0:
+        total = 0
+        totalStr = input("Please enter a positive number: ")
 
+        
 earnedStr = input("Please enter the total number of points earned: ")
-while not(earnedStr.isnumeric()):
-    print("That is not a number. Try again.")
-    earnedStr = input("Please enter the total number of points earned: ")
+earned = -1
+while earned == -1:
+    try:
+        earned = float(earnedStr)
+    except ValueError:
+        earnedStr = input("Please enter a number: ")
+    if earned < 0: #allows an entry of 0 points earned
+        earned = -1
+        earnedStr = input("Please enter a positive number: ")
+    elif earned > total:
+        earnedStr = input("Earned is greater than total. Enter 'y' to allow extra credit or enter the correct number otf earned points: ")
+        if earnedStr.lower()!="y":
+            earned = -1
 
-earned = float(earnedStr)
 
 percent = (earned/total)*100
 rounded = round(percent,2)
