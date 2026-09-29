@@ -9,14 +9,30 @@ Prints the result to the console in the following format: "Your grade: 87.50%"""
 
 print("Welcome to the grade calculator")
 totalStr = input("Please enter the total number of points possible: ")
-earnedStr = input("Please enter the total number of points earned: ")
-
+while not(totalStr.isnumeric()):
+    print("That is not a number. Try again.")
+    totalStr = input("Please enter the total number of points possible: ")
 total = float(totalStr)
+
+earnedStr = input("Please enter the total number of points earned: ")
+while not(earnedStr.isnumeric()):
+    print("That is not a number. Try again.")
+    earnedStr = input("Please enter the total number of points earned: ")
+
 earned = float(earnedStr)
 
 percent = (earned/total)*100
 rounded = round(percent,2)
 
-print(f"Your grade: {rounded}%")
+print(f"Your grade: {percent:.2f}%")
 
-#Here is a change
+if rounded >=90:
+    grade = "A"
+elif rounded >= 80:
+    grade = "B"
+elif rounded >= 70:
+    grade = "C"
+elif rounded >= 60:
+    grade = "D"
+else:
+    grade = "F"
